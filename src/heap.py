@@ -127,7 +127,7 @@ class Heap1(HeapMixin):
         """Move the value at x[i] down to its correct location."""
         while i < len(x):
             child = _min_child(x, i)
-            if child is None or x[i] < x[child]:
+            if child is None or x[i] < x[child]: 
                 break
             x[i], x[child] = x[child], x[i]
             i = child
@@ -143,7 +143,17 @@ class Heap2(HeapMixin):
     """
 
     @classmethod
-    def _fix_down(cls, x: list[Ord], i: int) -> None:
+    def _fix_down(cls, x: list[Ord], i: int) -> None: # cls: class. 
+        # Class methods are called on a class, not an object of a 
+        # class. 
         """Move the value at x[i] down to its correct location."""
-        # FIXME: implement this strategy
-        ...
+        # drop parent down
+        while i < len(x):
+            child = _min_child(x, i) # return idx or None
+            if child is None: # if value moved to the lowest level.
+                break
+            x[child], x[i] = x[i], x[child]
+            i = child
+        # fix_up. The class-method is called on the class Heap2. 
+        Heap2._fix_up(x, i)
+        
